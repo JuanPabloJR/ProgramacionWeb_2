@@ -10,7 +10,7 @@ agregar.addEventListener("click", () => {
     if (!codigo.value.trim() || !nombre.value.trim()) {
         div.innerHTML = "Llene todos los campos";
     } else {
-    fetch('http://localhost:3000/productos', {
+    fetch('http://localhost:3000/api/productos', {
         method: 'POST',
         body: JSON.stringify({
             codigo: codigo.value,
@@ -31,7 +31,7 @@ agregar.addEventListener("click", () => {
     limpiar();
 });
 listar.addEventListener("click", () => {
-    fetch('http://localhost:3000/productos')
+    fetch('http://localhost:3000/api/productos')
         .then(response => response.json())
         .then(productos => {
             div.innerHTML = '';
@@ -43,7 +43,7 @@ listar.addEventListener("click", () => {
         });
 });
 buscar.addEventListener("click", () => {
-    fetch(`http://localhost:3000/productos/${codigo.value ? codigo.value : null}`)
+    fetch(`http://localhost:3000/api/productos/${codigo.value ? codigo.value : null}`)
         .then((response) => response.json())
         .then(json => {
             if (json.msg != -1) {
@@ -55,7 +55,7 @@ buscar.addEventListener("click", () => {
     limpiar();
 });
 eliminar.addEventListener("click", () => {
-    fetch(`http://localhost:3000/productos/${codigo.value ? codigo.value : null}`, { method: 'DELETE' })
+    fetch(`http://localhost:3000/api/productos/${codigo.value ? codigo.value : null}`, { method: 'DELETE' })
         .then(response => response.json())
         .then(json => {
             if (json.msg != -1) {
